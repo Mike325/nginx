@@ -1,11 +1,8 @@
 ## Nginx 
 
-This repository contains **Dockerfile** of [Nginx](http://nginx.org/)
-for [Docker](https://www.docker.com/)'s 
-[automated build](https://registry.hub.docker.com/u/dockerfile/nginx/).
+This repository contains **Dockerfile** of [Nginx](http://nginx.org/) for [Docker](https://www.docker.com/).
 
-It's a simple and lightweight nginx image, based on the 
-[official nginx image](https://github.com/nginxinc/docker-nginx/blob/8921999083def7ba43a06fabd5f80e4406651353/mainline/alpine/Dockerfile).
+It's a simple and lightweight nginx image, based on the [official nginx image](https://github.com/nginxinc/docker-nginx/blob/8921999083def7ba43a06fabd5f80e4406651353/mainline/alpine/Dockerfile).
 
 It just add a more complete default config file to  start the server.
 
@@ -17,8 +14,7 @@ You can run a new instance of nginx using:
 docker run -d --name nginx -p 80:80 mike325/nginx
 ```
 
-or using docker-compose,
-just create a `docker-compose.yml`
+or using docker-compose, just create a `docker-compose.yml`
 
 ```yaml
 version: '2'
@@ -45,8 +41,7 @@ and run `docker-compose up -d nginx`
 
 #### Attach persistent/shared directories
 
-You may also want to use your own virtual host or use certificates to
-encrypt your sites:
+You may also want to use your own virtual host or use certificates to encrypt your sites:
 
 ```
 docker run -d \
@@ -68,13 +63,9 @@ You can also build an image from the Dockerfile to modify the nginx.conf file:
 
 ```
 git clone https://github.com/mike325/nginx
-
 cd nginx
-
 docker build -t custom_nginx .
-
 docker run --name custom_nginx -p 80:80 custom_nginx
-
 ```
 
 or with docker-compose using your `docker-compose.yml`:
