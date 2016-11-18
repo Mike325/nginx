@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+    custom_nginx:
+        build: .
+        image: custom_nginx 
+        restart: always
+        container_name: custom_nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /etc/nginx/sites-enabled:/etc/nginx/sites-enabled
+            - /etc/nginx/logs:/var/log/nginx
+        networks:
+            - reverse_proxy
+    nginx:
+        image: mike325/nginx:latest
+        restart: always
+        container_name: nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /etc/nginx/sites-enabled:/etc/nginx/sites-enabled
+            - /etc/nginx/logs:/var/log/nginx
+        networks:
+            - reverse_proxy
+
+networks:
+    reverse_proxy:
+        driver: bridge
