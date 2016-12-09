@@ -1,7 +1,7 @@
 FROM nginx:mainline-alpine
 MAINTAINER Mike <mike@prodeveloper.me> 
 
-ENV NGINX_VERSION 1.11.5
+ENV NGINX_VERSION 1.11.6
 
 # Cache dir 
 RUN mkdir -p /tmp/nginx/cache
