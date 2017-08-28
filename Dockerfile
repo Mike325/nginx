@@ -126,6 +126,9 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+# Creating cache dir
+RUN mkdir -p /tmp/nginx/cache
+
 #Add custom nginx config file.
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
