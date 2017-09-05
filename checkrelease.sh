@@ -94,7 +94,8 @@ function update_files() {
 
     git add checkrelease.sh Dockerfile
     git commit -m "New version ${nginx_new_major}.${nginx_new_minor}.${nginx_new_patch}"
-    git push origin master
+    git tag -m "New version" -a "${nginx_new_major}.${nginx_new_minor}.${nginx_new_patch}"
+    git push --follow-tags origin master
 }
 
 while [[ $# -gt 0 ]]; do
