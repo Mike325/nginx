@@ -131,6 +131,7 @@ RUN mkdir -p /tmp/nginx/cache
 
 #Add custom nginx config file.
 COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./common/ /etc/nginx/
 
 # Define working directory.
 WORKDIR /etc/nginx

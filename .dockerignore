@@ -1,0 +1,12 @@
+.git
+.gitignore
+env.*
+
+Dockerfile
+checkrelease.sh
+LICENSE
+README.md
+
+# To prevent storing dev/temporary container data
+*.csv
+/tmp/*
