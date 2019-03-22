@@ -113,7 +113,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 NGINX_MAJOR=1
-NGINX_MINOR=14
+NGINX_MINOR=15
 NGINX_PATCH=0
 
 NEW_VERSION=0
