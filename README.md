@@ -1,4 +1,6 @@
-## Nginx 
+## Nginx
+
+[![Build Status](https://travis-ci.org/Mike325/nginx.svg?branch=master)](https://travis-ci.org/Mike325/nginx)
 
 This repository contains **Dockerfile** of [Nginx](http://nginx.org/) for [Docker](https://www.docker.com/).
 
@@ -57,7 +59,7 @@ docker run -d \
 You can check the `example.conf` to configure the image to reverse proxy your sites.
 
 
-### Manual build 
+### Manual build
 
 You can also build an image from the Dockerfile to modify the nginx.conf file:
 
