@@ -13,7 +13,7 @@ It just add a more complete default config file to  start the server.
 You can run a new instance of nginx using:
 
 ```
-docker run -d --name nginx -p 80:80 mike325/nginx
+docker run -d --name nginx -p 80:80 mike325/nginx:latest
 ```
 
 or using docker-compose, just create a `docker-compose.yml`
@@ -53,7 +53,7 @@ docker run -d \
     -v <sites-enabled-dir>:/etc/nginx/sites-enabled \
     -v <certs-dir>:/etc/nginx/certs \
     -v <logs-dir>:/var/log/nginx \
-    mike325/nginx
+    mike325/nginx:latest
 ```
 
 You can check the `example.conf` to configure the image to reverse proxy your sites.

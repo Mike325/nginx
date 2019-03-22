@@ -1,0 +1,18 @@
+{
+    ".projections.json"  : { "type": "Projections" },
+    ".gitignore"         : { "type": "Gitignore" },
+    ".git/hooks/*"       : { "type": "GitHooks" },
+    ".git/config"        : { "type": "Git" },
+    ".git/info/*"        : { "type": "Git" },
+    ".travis.yml"        : { "type": "Travis" },
+    ".ycm_extra_conf.py" : { "type": "ConfigYCM" },
+    "README.md"          : { "type": "Readme" },
+    "LICENSE"            : { "type": "License" },
+    "project.vim"        : { "type": "Project" },
+    "clang-format"       : { "type": "ClangFormat" },
+    "Dockerfile"         : { "type": "Dockerfile" },
+    "docker-compose.yml" : { "type": "DockerCompose" },
+    "nginx.conf"         : { "type": "Nginx" },
+    "*.sh"               : { "type": "Scripts" }
+}
+

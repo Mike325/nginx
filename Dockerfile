@@ -71,10 +71,10 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     && export GNUPGHOME="$(mktemp -d)" \
     && gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys "$GPG_KEYS" \
     && gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
-    && rm -r "$GNUPGHOME" nginx.tar.gz.asc \
+    && rm -fr "$GNUPGHOME" nginx.tar.gz.asc \
     && mkdir -p /usr/src \
     && tar -zxC /usr/src -f nginx.tar.gz \
-    && rm nginx.tar.gz \
+    && rm -f nginx.tar.gz \
     && cd /usr/src/nginx-$NGINX_VERSION \
     && ./configure $CONFIG --with-debug \
     && make -j$(getconf _NPROCESSORS_ONLN) \
