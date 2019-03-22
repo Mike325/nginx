@@ -1,7 +1,9 @@
-language: bash
+language: shell
 
 services:
   - docker
+
+before_install: bash -c 'shopt -s globstar; shellcheck *.sh'
 
 script: bash build.sh
 
@@ -11,3 +13,9 @@ deploy:
   on:
     branch: master
 
+notifications:
+  email:
+    recipients:
+      - mickiller.25@gmail.com
+    on_success: never
+    on_failure: always

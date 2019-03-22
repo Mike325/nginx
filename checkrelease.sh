@@ -24,6 +24,9 @@
 NAME="$0"
 NAME="${NAME##*/}"
 
+DIR=$(readlink -e "$0")
+DIR="${DIR%/*}"
+
 UPDATE=0
 
 function help_user() {
@@ -92,6 +95,11 @@ function update_files() {
     sed -i "s/^NGINX_MINOR=${NGINX_MINOR}/NGINX_MINOR=${nginx_new_minor}/" checkrelease.sh
     sed -i "s/^NGINX_PATCH=${NGINX_PATCH}/NGINX_PATCH=${nginx_new_patch}/" checkrelease.sh
 
+    if hash ntfy 2>/dev/null; then
+        NGINX_VERSION="$(grep -E 'ENV\s+NGINX_VERSION\s+[0-9]\.[0-9]+\.[0-9]+' Dockerfile | awk '{print $3}')"
+        ntfy -t "New Nginx Version" send "Updating Nginx to ${NGINX_VERSION}"
+    fi
+
     git add checkrelease.sh Dockerfile
     git commit -m "New version ${nginx_new_major}.${nginx_new_minor}.${nginx_new_patch}"
     git tag -m "New version" -a "${nginx_new_major}.${nginx_new_minor}.${nginx_new_patch}"
@@ -118,6 +126,8 @@ NGINX_PATCH=9
 
 NEW_VERSION=0
 
+pushd "$DIR" > /dev/null
+
 if check_new_version  "Checking for major version" "$(( NGINX_MAJOR + 1))" "0" "0"; then
     NEW_VERSION=1
     status_msg "New major version $(( NGINX_MAJOR + 1)).0.0"
@@ -125,6 +135,7 @@ if check_new_version  "Checking for major version" "$(( NGINX_MAJOR + 1))" "0" "
     if [[ $UPDATE -eq 1 ]]; then
         update_files "$(( NGINX_MAJOR + 1))" "0" "0"
     fi
+    popd > /dev/null
     exit 0
 fi
 
@@ -135,6 +146,7 @@ if check_new_version  "Checking for minor version" "$NGINX_MAJOR" "$(( NGINX_MIN
     if [[ $UPDATE -eq 1 ]]; then
         update_files "${NGINX_MAJOR}" "$(( NGINX_MINOR + 1))" "0"
     fi
+    popd > /dev/null
     exit 0
 fi
 
@@ -146,11 +158,16 @@ if check_new_version  "Checking for new patches" "$NGINX_MAJOR" "$NGINX_MINOR" "
     if [[ $UPDATE -eq 1 ]]; then
         update_files "${NGINX_MAJOR}" "${NGINX_MINOR}" "$((NGINX_PATCH + 1))"
     fi
+    popd > /dev/null
     exit 0
 fi
 
 
 if [[ $NEW_VERSION -eq 0 ]]; then
     error_msg "No new versions for Nginx yet"
+    popd > /dev/null
     exit 1
 fi
+
+popd > /dev/null
+exit 0
