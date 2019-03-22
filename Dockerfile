@@ -1,5 +1,5 @@
-FROM alpine:3.4
-MAINTAINER Mike <mike@prodeveloper.me>
+FROM alpine:latest
+MAINTAINER Mike <mickiller.25@gmail.com>
 
 ENV NGINX_VERSION 1.15.9
 
