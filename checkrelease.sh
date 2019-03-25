@@ -100,6 +100,9 @@ function update_files() {
         ntfy -t "New Nginx Version" send "Updating Nginx to ${NGINX_VERSION}"
     fi
 
+    git stash save 'Temp stash'
+    git pull origin master
+    git stash pop
     git add checkrelease.sh Dockerfile
     git commit -m "New version ${nginx_new_major}.${nginx_new_minor}.${nginx_new_patch}"
     git tag -m "New version" -a "${nginx_new_major}.${nginx_new_minor}.${nginx_new_patch}"
